@@ -15,8 +15,10 @@ module Exercise
         films_ratings.reduce(&:+) / films_ratings.count
       end
 
-      def chars_count(_films, _threshold)
-        0
+      def chars_count(films, threshold)
+        ranked_films = films.map { |film| film['name'] if film['rating_kinopoisk'].to_f >= threshold }
+        ranked_films.compact!
+        ranked_films.reduce(0) { |memo, film_name| memo + film_name.count('и') }
       end
     end
   end
