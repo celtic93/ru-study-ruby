@@ -29,7 +29,12 @@ module Exercise
       end
 
       # Написать свою функцию my_compact
-      def my_compact; end
+      def my_compact
+        new_array = MyArray.new
+
+        my_each { |element| new_array << element unless element.nil? }
+        new_array
+      end
 
       # Написать свою функцию my_reduce
       def my_reduce; end
