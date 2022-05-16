@@ -16,7 +16,17 @@ module Exercise
       end
 
       # Написать свою функцию my_map
-      def my_map; end
+      def my_map
+        new_array = MyArray.new
+
+        i = 0
+        while i < length
+          new_array.push(yield self[i])
+          i += 1
+        end
+
+        new_array
+      end
 
       # Написать свою функцию my_compact
       def my_compact; end
