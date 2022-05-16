@@ -5,16 +5,53 @@ module Exercise
       # Использовать свои написанные функции для реализации следующих - можно.
 
       # Написать свою функцию my_each
-      def my_each; end
+      def my_each
+        i = 0
+        while i < length
+          yield self[i]
+          i += 1
+        end
+
+        self
+      end
 
       # Написать свою функцию my_map
-      def my_map; end
+      def my_map
+        new_array = MyArray.new
+
+        i = 0
+        while i < length
+          new_array.push(yield self[i])
+          i += 1
+        end
+
+        new_array
+      end
 
       # Написать свою функцию my_compact
-      def my_compact; end
+      def my_compact
+        new_array = MyArray.new
+
+        my_each { |element| new_array << element unless element.nil? }
+        new_array
+      end
 
       # Написать свою функцию my_reduce
-      def my_reduce; end
+      def my_reduce(acc = nil)
+        if acc
+          idx = 0
+        else
+          idx = 1
+          acc = self[0]
+        end
+
+        while idx < length
+          acc = yield(acc, self[idx])
+          idx += 1
+        end
+
+        acc
+      end
     end
   end
 end
