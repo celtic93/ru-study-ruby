@@ -37,7 +37,21 @@ module Exercise
       end
 
       # Написать свою функцию my_reduce
-      def my_reduce; end
+      def my_reduce(acc = nil)
+        if acc
+          idx = 0
+        else
+          idx = 1
+          acc = self[0]
+        end
+
+        while idx < length
+          acc = yield(acc, self[idx])
+          idx += 1
+        end
+
+        acc
+      end
     end
   end
 end
